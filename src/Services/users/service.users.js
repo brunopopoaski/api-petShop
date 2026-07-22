@@ -1,6 +1,7 @@
 import repository from '../../Repositories/users/repository.users.js';
 import compareHashSenha from '../../Utils/compareHash.js';
 import createToken from '../../Utils/createToken.js';
+import createError from '../../Utils/createError.js';
 
 export default {
     async login(cpf, senha) {
@@ -10,10 +11,9 @@ export default {
                 throw createError('Usuário não encontrado', 404);
             }
             const senhaValidaHash = await compareHashSenha(senha, userDB.senha);
-
             if (senhaValidaHash) {
                 const novoToken = {
-                    acess_token: await createToken({ acess: userDB.acesso }),
+                    acess_token: await createToken({ tipo: userDB.tipoUsuario }),
                     type: "Bearer"
                 }
                 return novoToken;

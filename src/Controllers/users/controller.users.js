@@ -1,4 +1,4 @@
-export { userService } from '../../Services/users/service.users.js';
+import userService from '../../Services/users/service.users.js';
 
 export default {
     async login(req, res, next ) {

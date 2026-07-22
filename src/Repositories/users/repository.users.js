@@ -1,4 +1,4 @@
-import {Muser, MEndereco} from '../../models/user.model.js'
+import { MUser, MEndereco } from '../../models/user.schema.js'
 
 export default {
     async findByCpf(cpf) {

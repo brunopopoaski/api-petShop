@@ -1,5 +1,44 @@
 import mongoose from 'mongoose';
 
+const EnderecoSchema = new mongoose.Schema(
+  {
+    cep: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    rua: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    numero: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    bairro: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    cidade: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    estado: {
+      type: String,
+      required: true,
+      uppercase: true,
+      minlength: 2,
+      maxlength: 2,
+    },
+  },
+  { _id: false }
+);
+
+
 const UserSchema = new mongoose.Schema(
     {
      id: {
@@ -38,7 +77,7 @@ const UserSchema = new mongoose.Schema(
     senha: {
       type: String,
       required: true,
-      select: false,
+      //select: false,
     },
 
     endereco: {
@@ -64,43 +103,7 @@ const UserSchema = new mongoose.Schema(
   }
 )
 
-const EnderecoSchema = new mongoose.Schema(
-  {
-    cep: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    rua: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    numero: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    bairro: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    cidade: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    estado: {
-      type: String,
-      required: true,
-      uppercase: true,
-      minlength: 2,
-      maxlength: 2,
-    },
-  },
-  { _id: false }
-);
+
 
 
 const MUser = mongoose.model('users', UserSchema);
