@@ -1,53 +1,9 @@
 import mongoose from 'mongoose';
 
-const EnderecoSchema = new mongoose.Schema(
-  {
-    cep: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    rua: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    numero: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    bairro: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    cidade: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    estado: {
-      type: String,
-      required: true,
-      uppercase: true,
-      minlength: 2,
-      maxlength: 2,
-    },
-  },
-  { _id: false }
-);
-
 
 const UserSchema = new mongoose.Schema(
     {
-     id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-
-    nomeCompleto: {
+    nome: {
       type: String,
       required: true,
       trim: true,
@@ -81,8 +37,38 @@ const UserSchema = new mongoose.Schema(
     },
 
     endereco: {
-      type: EnderecoSchema,
-      required: true,
+              cep: {
+              type: String,
+              required: true,
+              trim: true,
+            },
+            rua: {
+              type: String,
+              required: true,
+              trim: true,
+            },
+            numero: {
+              type: String,
+              required: true,
+              trim: true,
+            },
+            bairro: {
+              type: String,
+              required: true,
+              trim: true,
+            },
+            cidade: {
+              type: String,
+              required: true,
+              trim: true,
+            },
+            estado: {
+              type: String,
+              required: true,
+              uppercase: true,
+              minlength: 2,
+              maxlength: 2,
+            }
     },
 
     status: {
@@ -91,7 +77,7 @@ const UserSchema = new mongoose.Schema(
       default: "ATIVO",
     },
 
-    tipoUsuario: {
+    role: {
       type: Number,
       enum: [1, 33144],
       default: 1,
@@ -107,6 +93,5 @@ const UserSchema = new mongoose.Schema(
 
 
 const MUser = mongoose.model('users', UserSchema);
-const MEndereco = mongoose.model('enderecos', EnderecoSchema);
 
-export { MUser, MEndereco };
+export default MUser;

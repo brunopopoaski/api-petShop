@@ -1,7 +1,16 @@
-import { MUser, MEndereco } from '../../models/user.schema.js'
+import Muser from '../../Models/user.schema.js';
 
 export default {
-    async findByCpf(cpf) {
-        return await MUser.findOne({cpf})
+    async createUser(nome, cpf, email, telefone, hashSenha, endereco, role) {
+        const novoUser = await Muser.insertOne({
+            nome: nome,
+            cpf: cpf,
+            email: email,
+            telefone: telefone,
+            senha: hashSenha,
+            endereco: endereco,
+            role: role
+        });
+        return novoUser;
     }
 }
