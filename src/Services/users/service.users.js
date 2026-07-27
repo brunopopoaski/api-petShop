@@ -1,27 +1,18 @@
-import repository from '../../Repositories/users/repository.users.js';
-import compareHashSenha from '../../Utils/compareHash.js';
-import createToken from '../../Utils/createToken.js';
-import createError from '../../Utils/createError.js';
+import createError from "../../Utils/createError.js";
+import userRepository from "../../Repositories/users/repository.users.js";
+import hash from "../../Utils/hash.js";
 
 export default {
-    async login(cpf, senha) {
+    async createUser(nome, cpf, email, telefone, senha, endereco, role) {
         try {
-            const userDB = await repository.findByCpf(cpf);
-            if (!userDB.cpf) {
-                throw createError('Usuário não encontrado', 404);
+            if (!nome || !cpf || !email || !telefone || !senha || !endereco || !role) {
+                throw createError('Todos os campos são obrigatórios', 400);
             }
-            const senhaValidaHash = await compareHashSenha(senha, userDB.senha);
-            if (senhaValidaHash) {
-                const novoToken = {
-                    acess_token: await createToken({ tipo: userDB.tipoUsuario }),
-                    type: "Bearer"
-                }
-                return novoToken;
-            } else {
-                throw createError('Senha incorreta!', 404);
-            }
+            const senhaHash = await hash.createHashSenha(senha);
+            const novoUser = await userRepository.createUser(nome, cpf, email, telefone, senhaHash, endereco, role);
+            return novoUser;
         } catch (error) {
-            throw createError('Erro de autenticação.', 400);
+            throw createError('Erro ao criar usuário.', 400);;
         }
     }
 }
