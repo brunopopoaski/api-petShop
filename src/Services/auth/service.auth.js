@@ -10,10 +10,11 @@ export default {
             if (!userDB.cpf) {
                 throw createError('Usuário não encontrado', 404);
             }
+            
             const senhaValidaHash = await hash.compareHashSenha(senha, userDB.senha);
             if (senhaValidaHash) {
                 const novoToken = {
-                    acess_token: await createToken({ role: userDB.tipoUsuario, id: userDB._id }),
+                    acess_token: await createToken({ role: userDB.role, id: userDB._id }),
                     type: "Bearer"
                 }
                 return novoToken;
