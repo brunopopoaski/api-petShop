@@ -11,5 +11,3 @@ export default {
   return bcrypt.compareSync(senha, hashSenha);
 }
 }
-
-

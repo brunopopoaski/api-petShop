@@ -20,5 +20,36 @@ export default {
         } catch (error) {
             next(error);
         }
+    },
+
+    async findUserById(req, res, next) {
+        try {
+            const { id } = req.params;
+            const user = await userService.findUserById(id);
+            res.status(200).json(user);
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    async updateUser(req, res, next) {
+        try {
+            const { id } = req.params;
+            const { nome, cpf, email, telefone, senha, endereco, role, status } = req.body;
+            const userUpdated = await userService.updateUser(id, nome, cpf, email, telefone, senha, endereco, role, status);
+            res.status(200).json(userUpdated);
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    async deleteUser(req, res, next) {
+        try {
+            const { id } = req.params;
+            const userDeleted = await userService.deleteUser(id);
+            res.status(200).json(userDeleted);
+        } catch (error) {
+            next(error);
+        }
     }
-}
+};

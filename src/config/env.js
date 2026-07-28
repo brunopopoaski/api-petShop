@@ -7,7 +7,8 @@ const env ={
     PORT: process.env.PORT,
     JWT_SECRET: process.env.JWT_SECRET,
     EXPIREIN: process.env.EXPIREIN,
-    SALT_ROUNDS: parseInt(process.env.SALT_ROUNDS)
+    SALT_ROUNDS: parseInt(process.env.SALT_ROUNDS),
+    ROLE_ADMIN: parseInt(process.env.ROLE_ADMIN)
 }
 
 export default env;
