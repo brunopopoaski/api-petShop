@@ -51,5 +51,24 @@ export default {
         } catch (error) {
             next(error);
         }
+    },
+        async findUserByIdProfile(req, res, next) {
+        try {
+            const id = req.user.id;
+            const user = await userService.findUserById(id);
+            res.status(200).json(user);
+        } catch (error) {
+            next(error);
+        }
+    },
+        async updateUserProfile(req, res, next) {
+        try {
+            const id = req.user.id;
+            const { nome, cpf, email, telefone, senha, endereco, role, status } = req.body;
+            const userUpdated = await userService.updateUser(id, nome, cpf, email, telefone, senha, endereco, role, status);
+            res.status(200).json(userUpdated);
+        } catch (error) {
+            next(error);
+        }
     }
 };

@@ -5,18 +5,16 @@ import hash from "../../Utils/hash.js";
 export default {
     async createUser(nome, cpf, email, telefone, senha, endereco, role) {
         try {
-            if (!nome || !cpf || !email || !telefone || !senha || !endereco || !role) {
+            if (!nome || !cpf || !email || !telefone || !senha || !endereco) {
                 throw createError('Todos os campos são obrigatórios', 400);
             }
             const senhaHash = await hash.createHashSenha(senha);
             const novoUser = await userRepository.createUser(nome, cpf, email, telefone, senhaHash, endereco, role);
             return novoUser;
-        } catch (error) {
-            if (error.statusCode) {
-                throw error;
-            }
-            throw createError('Erro ao criar usuário.', 400);
-        }
+        }catch (error) {
+    console.error(error);
+    throw createError(error.message, 400);
+}
     },
 
     async listUsers() {
@@ -32,7 +30,6 @@ export default {
             if (!id) {
                 throw createError('O ID é obrigatório', 400);
             }
-
             const user = await userRepository.findUserById(id);
             if (!user) {
                 throw createError('Usuário não encontrado', 404);
