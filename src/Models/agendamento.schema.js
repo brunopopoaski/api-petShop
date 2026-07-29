@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
-const serviceSchema = new mongoose.Schema(
+const agendamentoSchema = new mongoose.Schema(
   {
     tipo: {
-      type: String,
-      required: true,
-      enum: ["Banho", "Vacina", "Consulta"]
+      type: mongoose.Schema.Types.ObjectId,
+      required: true
     },
 
     dataMarcada: {
@@ -34,6 +33,6 @@ const serviceSchema = new mongoose.Schema(
   }
 );
 
-const MService = mongoose.model('services', serviceSchema);
+const MAgendamento = mongoose.model('agendamentos', agendamentoSchema);
 
-export default MService;
+export default MAgendamento;

@@ -9,7 +9,7 @@ const routerPet = Router();
 
 routerPet.get('/pets/profile', authMiddleware(env.ROLE_USER), petController.findPetByIdProfile);
 
-routerPet.get('/pets/profile', authMiddleware(env.ROLE_USER), petController.listPetsByIdProfile);
+routerPet.get('/pets/profile/mypets', authMiddleware(env.ROLE_USER), petController.listPetsByIdProfile);
 
 
 
@@ -29,5 +29,8 @@ routerPet.put('/pets/:id', authMiddleware(env.ROLE_ADMIN), petController.updateP
 
 // Excluir/Inativar um pet
 routerPet.delete('/pets/:id', authMiddleware(env.ROLE_ADMIN), petController.deletePet);
+
+//rota para criar um tipo de pet apenas admin
+routerPet.post('/pets/tipo', authMiddleware(env.ROLE_ADMIN), petController.createTypePet);
 
 export default routerPet;

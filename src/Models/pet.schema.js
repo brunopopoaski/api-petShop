@@ -9,9 +9,8 @@ const petSchema = new mongoose.Schema(
     },
 
     especie: {
-      type: String,
-      required: true,
-      enum: ["Cachorro", "Gato", "Ave", "Peixe", "Roedor", "Réptil", "Outro"]
+      type: mongoose.Schema.Types.ObjectId,
+      required: true
     },
 
     raca: {
