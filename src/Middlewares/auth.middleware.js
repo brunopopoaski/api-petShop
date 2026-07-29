@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import env from '../config/env.js';
 import createError from '../Utils/createError.js';
 
-export default function authMiddleware(requiredRole = null) {
+export default function authMiddleware(requiredRole) {
     return (req, res, next) => {
         try {
             const authHeader = req.headers.authorization;
@@ -11,9 +11,10 @@ export default function authMiddleware(requiredRole = null) {
                 throw createError('Token não informado.', 401);
             }
             
+            
             const token = authHeader.split(' ')[1];
             req.user = jwt.verify(token, env.JWT_SECRET);
-        
+            
 
             if (requiredRole && req.user.role !== requiredRole) {
                 throw createError('Acesso negado.', 403);

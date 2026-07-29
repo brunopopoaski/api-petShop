@@ -1,8 +1,8 @@
-import Muser from '../../Models/user.schema.js';
+import MUser from '../../Models/user.schema.js';
 
 export default {
     async createUser(nome, cpf, email, telefone, hashSenha, endereco, role) {
-        const novoUser = await Muser.create({
+        const novoUser = await MUser.create({
             nome: nome,
             cpf: cpf,
             email: email,
@@ -11,22 +11,23 @@ export default {
             endereco: endereco,
             role: role
         });
+        console.log("novoUser", novoUser)
         return novoUser;
     },
 
     async listUsers() {
-        return await Muser.find().select("-senha");
+        return await MUser.find().select("-senha");
     },
 
     async findUserById(id) {
-        return await Muser.findById(id).select("-senha");
+        return await MUser.findById(id).select("-senha");
     },
 
     async updateUser(id, dadosAtualizados) {
-        return await Muser.findByIdAndUpdate(id, dadosAtualizados, { new: true }).select("-senha");
+        return await MUser.findByIdAndUpdate(id, dadosAtualizados, { new: true }).select("-senha");
     },
 
     async deleteUser(id) {
-        return await Muser.findByIdAndUpdate(id, { status: 'INATIVO' }, { new: true }).select("-senha");
+        return await MUser.findByIdAndUpdate(id, { status: 'INATIVO' }, { new: true }).select("-senha");
     }
 };
