@@ -21,7 +21,7 @@ const agendamentoSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: [
-        "Agendado",
+        "pendente",
         "Aceito",
         "Finalizado",
         "Cancelado"
