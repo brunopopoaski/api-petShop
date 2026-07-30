@@ -6,9 +6,9 @@ import env from '../config/env.js';
 const routerAgendamentos = Router();
 
 // rotas de agendamento para user comum logado
-routerAgendamentos.get('/agendamentos/profile', authMiddleware(env.ROLE_USER), agendamentosController.listAgendamentosProfile);
+routerAgendamentos.get('/agendamentos/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.listAgendamentosProfile);
 routerAgendamentos.put('/agendamentos/profile', agendamentosController.updateAgendamento);
-routerAgendamentos.delete('/agendamentos/profile', authMiddleware(env.ROLE_USER), agendamentosController.deleteAgendamento);
+routerAgendamentos.delete('/agendamentos/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.deleteAgendamento);
 routerAgendamentos.get('/agendamentos/profile/servico', agendamentosController.listServices);
 
 // rotas de agendamento para admin
