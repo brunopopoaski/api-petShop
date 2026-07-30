@@ -11,7 +11,7 @@ routerPet.get('/pets/profile', authMiddleware(env.ROLE_USER), petController.find
 
 routerPet.get('/pets/profile/mypets', authMiddleware(env.ROLE_USER), petController.listPetsByIdProfile);
 
-routerPet.get('/pets/tipo', authMiddleware(env.ROLE_USER), petController.listTypesPet);
+routerPet.get('/pets/tipo', petController.listTypesPet);
 
 
 
