@@ -13,8 +13,8 @@ routerUser.post('/login', authController.login);
 
 // Buscar o próprio user pelo ID
 
-routerUser.get('/users/profile', authMiddleware(env.ROLE_USER), userController.findUserByIdProfile);
-routerUser.put('/users/profile', authMiddleware(env.ROLE_USER), userController.updateUserProfile);
+routerUser.get('/users/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), userController.findUserByIdProfile);
+routerUser.put('/users/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), userController.updateUserProfile);
 
 //rotas users para admin
 
