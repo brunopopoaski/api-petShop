@@ -9,7 +9,7 @@ const routerAgendamentos = Router();
 routerAgendamentos.get('/agendamentos/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.listAgendamentosProfile);
 routerAgendamentos.put('/agendamentos/profile', agendamentosController.updateAgendamento);
 routerAgendamentos.delete('/agendamentos/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.deleteAgendamento);
-routerAgendamentos.get('/agendamentos/profile/servico', agendamentosController.listServices);
+routerAgendamentos.get('/agendamentos/servico', agendamentosController.listServices);
 
 // rotas de agendamento para admin
 routerAgendamentos.post('/agendamentos', agendamentosController.createAgendamento);
