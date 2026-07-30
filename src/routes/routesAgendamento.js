@@ -12,6 +12,7 @@ routerAgendamentos.delete('/agendamentos/profile', authMiddleware(env.ROLE_USER,
 routerAgendamentos.get('/servicos', agendamentosController.listServices);
 
 // rotas de agendamento para admin
+routerAgendamentos.post('/servicos', authMiddleware(env.ROLE_ADMIN), agendamentosController.createService);
 routerAgendamentos.post('/agendamentos', agendamentosController.createAgendamento);
 routerAgendamentos.get('/agendamentos', authMiddleware(env.ROLE_ADMIN), agendamentosController.listAgendamentos);
 routerAgendamentos.get('/agendamentos/:id', authMiddleware(env.ROLE_ADMIN), agendamentosController.findAgendamentoById);

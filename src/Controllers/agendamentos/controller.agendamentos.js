@@ -63,6 +63,16 @@ export default {
         }
     },
 
+    async createService(req, res, next) {
+        try {
+            const { nome, descricao, preco, duracao, ativo } = req.body;
+            const novoServico = await servicosService.createServico({ nome, descricao, preco, duracao, ativo });
+            res.status(201).json(novoServico);
+        } catch (error) {
+            next(error);
+        }
+    },
+
     async listServices(req, res, next) {
         try {
             const services = await servicosService.listServicos();
