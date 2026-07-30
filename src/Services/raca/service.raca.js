@@ -18,5 +18,13 @@ export default {
             if (error.statusCode) throw error;
             throw createError('Erro ao cadastrar tipo de pet.', 400);
         }
+    },
+
+    async listRacas() {
+        try {
+            return await racaRepository.listRacas();
+        } catch (error) {
+            throw createError('Erro ao listar tipos de pet.', 400);
+        }
     }
 };

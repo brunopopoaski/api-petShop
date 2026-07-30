@@ -62,6 +62,15 @@ export default {
         }
     },
 
+    async listTypesPet(req, res, next) {
+        try {
+            const types = await racaService.listRacas();
+            res.status(200).json(types);
+        } catch (error) {
+            next(error);
+        }
+    },
+
     async listPetsByIdProfile(req, res, next) {
         try {
             const tutor = req.user.id;

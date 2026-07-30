@@ -1,4 +1,5 @@
 import agendamentosService from '../../Services/agendamentos/service.agendamentos.js';
+import servicosService from '../../Services/servicos/service.servicos.js';
 
 export default {
     async createAgendamento(req, res, next) {
@@ -56,6 +57,15 @@ export default {
             const { id } = req.params;
             const agendamentoDeleted = await agendamentosService.deleteAgendamento(id);
             res.status(200).json(agendamentoDeleted);
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    async listServices(req, res, next) {
+        try {
+            const services = await servicosService.listServicos();
+            res.status(200).json(services);
         } catch (error) {
             next(error);
         }
