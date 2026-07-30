@@ -5,6 +5,7 @@ export default {
     async createAgendamento(req, res, next) {
         try {
             const { tipo, dataMarcada, pet, status } = req.body;
+            
             const novoAgendamento = await agendamentosService.createAgendamento(tipo, dataMarcada, pet, status);
             res.status(201).json(novoAgendamento);
         } catch (error) {

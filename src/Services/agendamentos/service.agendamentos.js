@@ -8,7 +8,6 @@ export default {
             if (!tipo || !dataMarcada || !pet) {
                 throw createError('Todos os campos obrigatórios são necessários.', 400);
             }
-
             const novoAgendamento = await agendamentosRepository.createAgendamento({
                 tipo,
                 dataMarcada,
