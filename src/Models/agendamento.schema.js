@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const agendamentoSchema = new mongoose.Schema(
   {
+
+    pet: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true
+    },
+
     tipo: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
@@ -9,11 +15,6 @@ const agendamentoSchema = new mongoose.Schema(
 
     dataMarcada: {
       type: Date,
-      required: true
-    },
-
-    pet: {
-      type: mongoose.Schema.Types.ObjectId,
       required: true
     },
 
