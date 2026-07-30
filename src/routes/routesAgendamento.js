@@ -10,7 +10,7 @@ routerAgendamentos.get('/agendamentos/profile', authMiddleware(env.ROLE_USER, en
 routerAgendamentos.put('/agendamentos/profile', agendamentosController.updateAgendamento);
 routerAgendamentos.delete('/agendamentos/profile', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.deleteAgendamento);
 routerAgendamentos.get('/servicos', agendamentosController.listServices);
-routerAgendamentos.get('/profile/servicos', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.listServices);
+routerAgendamentos.get('/profile/servico', authMiddleware(env.ROLE_USER, env.ROLE_ADMIN), agendamentosController.listServices);
 
 
 // rotas de agendamento para admin
